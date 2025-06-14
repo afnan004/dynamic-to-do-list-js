@@ -1,10 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Select required elements
     const addButton = document.getElementById('add-task-btn');
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
 
-    // Define addTask function
     function addTask() {
         const taskText = taskInput.value.trim();
 
@@ -13,35 +11,44 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Create <li> and set its text content
+        // Create li
         const li = document.createElement('li');
-        li.textContent = taskText;
+
+        // ✅ Create a span to hold just the task text
+        const taskSpan = document.createElement('span');
+        taskSpan.textContent = taskText;
 
         // Create remove button
-        const removeButton = document.createElement('button');
-        removeButton.textContent = "Remove";
-        removeButton.className = "remove-btn";
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = "Remove";
+        removeBtn.className = "remove-btn";
 
-        // Set onclick event for removing the task
-        removeButton.onclick = function () {
+        // Set onclick to remove li
+        removeBtn.onclick = function () {
             taskList.removeChild(li);
         };
 
-        // Append button to li and li to the list
-        li.appendChild(removeButton);
+        // Append text and button to li
+        li.appendChild(taskSpan);
+        li.appendChild(removeBtn);
+
+        // Append li to task list
         taskList.appendChild(li);
 
-        // Clear input field
+        // Clear input
         taskInput.value = "";
     }
 
-    // Add event listener to the Add Task button
+    // Add button listener
     addButton.addEventListener('click', addTask);
 
-    // Add event listener to allow Enter key to trigger addTask
+    // Add Enter key listener
     taskInput.addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
             addTask();
         }
     });
+
+    // Optional if required
+    addTask();
 });
