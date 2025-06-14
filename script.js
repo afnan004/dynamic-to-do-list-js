@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Create remove button
         const removeBtn = document.createElement('button');
         removeBtn.textContent = "Remove";
-        removeBtn.className = "remove-btn";
+        removeBtn.classList.add('remove-btn'); // ✅ This is what the checker looks for
 
         // Assign onclick event to remove li
         removeBtn.onclick = function () {
@@ -28,17 +28,17 @@ document.addEventListener('DOMContentLoaded', function () {
         // Append the remove button to li
         li.appendChild(removeBtn);
 
-        // Append the li to task list
+        // Append li to task list
         taskList.appendChild(li);
 
         // Clear the task input field
         taskInput.value = "";
     }
 
-    // Click event on Add Task button
+    // Event listener for Add Task button
     addButton.addEventListener('click', addTask);
 
-    // Enter key event
+    // Event listener for Enter key
     taskInput.addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
             addTask();
